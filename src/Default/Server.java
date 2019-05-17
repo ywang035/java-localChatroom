@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 public class Server {
@@ -17,9 +18,7 @@ public class Server {
 
     // client list
     private static ArrayList<Socket> client_list = new ArrayList<Socket>();
-    private static ArrayList<String> username_list = new ArrayList<String>();
-
-
+    
     public static void main(String[] args) {
 
         ServerSocketFactory factoy = ServerSocketFactory.getDefault();
@@ -38,13 +37,12 @@ public class Server {
 
                 Thread thread = new Thread(() -> {
                     try{
-                        serverReply(client);
+                        serverOutput(client);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 });
                 thread.start();
-
             }
 
         } catch (IOException e) {
@@ -54,7 +52,7 @@ public class Server {
     }
 
 
-    public static void serverReply(Socket clientSocket){
+    public static void serverOutput(Socket clientSocket){
 
         try {
             BufferedReader input = new BufferedReader((new InputStreamReader(clientSocket.getInputStream())));
@@ -62,22 +60,20 @@ public class Server {
 
             String clientMessage = null;
 
-            while((clientMessage = input.readLine()) != null){
-                System.out.println("server received from client: " + clientMessage);
-                output.println("server received message: " + clientMessage);
-                output.flush();
-                System.out.println("message replied");
+            while ((clientMessage = input.readLine()) != null) {
 
-                for(Socket s: client_list){
+                System.out.println("server received from client: " + clientMessage);
+
+                for (Socket s : client_list) {
                     PrintWriter output2 = new PrintWriter(s.getOutputStream());
-                    if(s.getPort() != clientSocket.getPort()){
-                        output2.println("message from other client: " + clientMessage);
+                    if (s.getPort() != clientSocket.getPort()) {
+                        output2.println(clientMessage);
                         output2.flush();
                         System.out.println("message forwarded");
                     }
                 }
             }
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }

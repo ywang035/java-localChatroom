@@ -34,7 +34,7 @@ public class ClientThread extends Thread {
         try{
             String serverMessage;
             while((serverMessage = input.readLine()) != null ){
-                System.out.println("message from server: " + serverMessage);
+                System.out.println(serverMessage);
             }
         } catch (IOException e) {
             e.printStackTrace();

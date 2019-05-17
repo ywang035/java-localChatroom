@@ -21,35 +21,34 @@ public class Client1 {
 
             Socket socket = new Socket("localhost", port);
 
+            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+            PrintWriter output = new PrintWriter(socket.getOutputStream());
+
+            // get username for fist input
+            System.out.print("Enter username: ");
+            String userName = input.readLine();
+
+            // create client thread for listening
             ClientThread ct = new ClientThread(socket);
             ct.start();
             System.out.println("connection established");
 
-            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-            PrintWriter output = new PrintWriter(socket.getOutputStream());
-
-
-
-            // get user message
+            // get user message from keyboard input
             String userMessage;
+
             while((userMessage = input.readLine()) != null){
                 if(userMessage.equals("QUIT")){
                     socket.close();
+                    System.out.println("exit chat");
                     System.exit(0);
                 }
-                output.println(userMessage);
+                output.println(userName + " >> " + userMessage);
                 output.flush();
-
             }
-
-
-
-
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }

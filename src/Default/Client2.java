@@ -13,20 +13,26 @@ import java.nio.Buffer;
 public class Client2 {
 
     // declare port number
-    private static int port = 4444;
+    private static int port = 8111;
 
     public static void main(String[] args) {
 
         try{
 
-            Socket socket = new Socket("localhost", port);
-
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-            PrintWriter output = new PrintWriter(socket.getOutputStream());
 
-            // get username for fist input
+            // get ip address from user
+            System.out.println("Enter IP address of server: ");
+            String IPAddress = input.readLine();
+
+            // get username from user
             System.out.print("Enter username: ");
             String userName = input.readLine();
+
+
+            Socket socket = new Socket( IPAddress, port);
+
+            PrintWriter output = new PrintWriter(socket.getOutputStream());
 
             // create client thread for listening
             ClientThread ct = new ClientThread(socket);
@@ -44,7 +50,6 @@ public class Client2 {
                 }
                 output.println(userName + " >> " + userMessage);
                 output.flush();
-
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -52,5 +57,4 @@ public class Client2 {
             e.printStackTrace();
         }
     }
-
 }

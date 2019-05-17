@@ -14,11 +14,11 @@ import java.util.ArrayList;
 public class Server {
 
     // declare port number
-    private static int port = 4444;
+    private static int port = 8111;
 
     // client list
     private static ArrayList<Socket> client_list = new ArrayList<Socket>();
-    
+
     public static void main(String[] args) {
 
         ServerSocketFactory factoy = ServerSocketFactory.getDefault();

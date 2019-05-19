@@ -36,6 +36,7 @@ public class ClientThread extends Thread {
     @Override
     public void run(){
 
+        // receive and show message from other user, forwarded by server
         try{
             while((serverMessage = input.readLine()) != null ){
                 System.out.println(serverMessage);

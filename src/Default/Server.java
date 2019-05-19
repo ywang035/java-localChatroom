@@ -26,7 +26,7 @@ public class Server {
         try(ServerSocket server = factoy.createServerSocket(port)){
             System.out.println("server starts, waiting for client ...");
 
-            // wait for connection
+            // wait for new connection
             while(true){
                 Socket client = server.accept();
                 client_list.add(client);
@@ -48,10 +48,10 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
+    // handle message from all users
     public static void serverOutput(Socket clientSocket){
 
         try {
@@ -64,6 +64,7 @@ public class Server {
 
                 System.out.println("server received from client: " + clientMessage);
 
+                // forward message to other clients
                 for (Socket s : client_list) {
                     PrintWriter output2 = new PrintWriter(s.getOutputStream());
                     if (s.getPort() != clientSocket.getPort()) {

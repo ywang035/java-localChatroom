@@ -26,7 +26,7 @@ public class ServerThread extends Thread{
             input = new BufferedReader(new InputStreamReader(client.getInputStream()));
             output = new PrintWriter(client.getOutputStream());
 
-            System.out.println("Client1 connected: " + client.getInetAddress().getHostAddress() +":" +client.getPort());
+            System.out.println("Client connected: " + client.getInetAddress().getHostAddress() +":" +client.getPort());
         } catch (IOException e) {
             e.printStackTrace();
         }

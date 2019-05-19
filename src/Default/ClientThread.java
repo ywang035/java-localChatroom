@@ -1,6 +1,9 @@
 package Default;
 
 
+import javafx.scene.control.TextArea;
+
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,6 +15,8 @@ public class ClientThread extends Thread {
     private static Socket socket;
     private static BufferedReader input;
     //private static PrintWriter output;
+    protected static String serverMessage;
+    protected static TextArea dialog;
 
 
     public ClientThread(Socket socket){
@@ -32,13 +37,21 @@ public class ClientThread extends Thread {
     public void run(){
 
         try{
-            String serverMessage;
             while((serverMessage = input.readLine()) != null ){
                 System.out.println(serverMessage);
+                dialog.appendText(serverMessage + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public static String getServerMessage(){
+        return serverMessage;
+    }
+
+
+    public void receiveDialog(javafx.scene.control.TextArea dialog1) {
+        dialog = dialog1;
+    }
 }

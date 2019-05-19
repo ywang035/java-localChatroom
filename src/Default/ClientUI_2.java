@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 
 
 // get data from textfield input
-
 public class ClientUI_2 extends Application {
 
     Stage window;
@@ -29,7 +28,6 @@ public class ClientUI_2 extends Application {
         launch(args);
 
     }
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {

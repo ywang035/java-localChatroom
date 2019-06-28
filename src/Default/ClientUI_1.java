@@ -1,6 +1,5 @@
 package Default;
 
-import com.sun.tools.corba.se.idl.constExpr.ShiftRight;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -161,6 +160,7 @@ public class ClientUI_1 extends Application {
         window.close();
     }
 
+    // to check connection
     private void printToConsole1(){
         System.out.println(userName);
         System.out.println(IPAddress);

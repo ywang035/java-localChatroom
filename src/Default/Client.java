@@ -10,14 +10,13 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.Buffer;
 
-// a class to create ClientThread for handdling message outgoing
+// a class to create ClientThread for handling message outgoing
 public class Client {
 
     // declare configure
     private static String IPAddress;
     private static int port;
     private static String userName;
-//    private static String userMessage;
     private static Socket socket;
     protected static ClientThread ct;
 
@@ -27,15 +26,11 @@ public class Client {
         this.userName = userName;
     }
 
-//    public void setUserMessage(String message){
-//        userMessage = message;
-//    }
 
     public static void clientMain(){
         try{
 
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-
 
             socket = new Socket(IPAddress, port);
 
@@ -53,6 +48,7 @@ public class Client {
         }
     }
 
+    // send message to established server
     public void clientSend(String userMessage){
 
         try{

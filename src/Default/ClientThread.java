@@ -51,7 +51,6 @@ public class ClientThread extends Thread {
         return serverMessage;
     }
 
-
     public void receiveDialog(javafx.scene.control.TextArea dialog1) {
         dialog = dialog1;
     }

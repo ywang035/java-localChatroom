@@ -1,2 +1,20 @@
-This is a simple TCP communication program with a simple GUI interface
-I made this to practice what I learned during a distributed system subject, although this might have nothing to do with a distributed system
+This is a simple TCP communication program with simple GUI interface
+I made this to practice what I leanred in a Distributed System subject
+Although this may not have much to do with distributed system
+
+
+
+*** What this does: ***
+1.  there is a local [Server] class to create communication socket
+    it also handles message forwarding sent by different clients
+
+2. there is [ClientUI_1] or [ClientUI_2] showing interface for user to input username, IP address and pre-defined port
+   [ClientUI_1] invokes [Client] class to establish connection with [Server] and send messages to server
+   [Client] invokes [ClientThread] to handle receving message from other clients (forwarded by server)
+   incoming and outgoing messages will be shown in the dialog, acting like a chatroom
+   
+   
+*** How to run: ***
+1. get the local IP address
+2. run[ClientUI], add user name and add IP address to coresponding field and leave port number unchanged, click [click to connect]
+3. type message and send

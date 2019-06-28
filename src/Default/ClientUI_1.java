@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 
 
 // get data from textfield input
-
 public class ClientUI_1 extends Application {
 
     Stage window;
@@ -31,7 +30,6 @@ public class ClientUI_1 extends Application {
         launch(args);
 
     }
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
